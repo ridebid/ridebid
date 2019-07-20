@@ -1,0 +1,15 @@
+{
+  "name": "getting-started-node-sdk",
+  "version": "1.0.0",
+  "description": "Getting Started with Node SDK",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "smartcar": "^7.1.0"
+  },
+  "devDependencies": {
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0"
+  }
+}
