@@ -1,5 +1,5 @@
 const path = require('path');
-require('dotenv').config({path: path.resolve(__dirname, '../.env')});
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const smartcar = require('smartcar');
 
 const express = require('express');
@@ -32,16 +32,16 @@ const client = new smartcar.AuthClient({
 // global variable to save our accessToken
 let access;
 
-app.get('/login', function(req, res) {
+app.get('/login', function (req, res) {
   const link = client.getAuthUrl();
   res.redirect(link);
 });
 
-app.get('/exchange', function(req, res) {
+app.get('/exchange', function (req, res) {
   const code = req.query.code;
   console.log(code);
   return client.exchangeCode(code)
-    .then(function(_access) {
+    .then(function (_access) {
       // in a production app you'll want to store this in some kind of persistent storage
       access = _access;
 
@@ -56,21 +56,21 @@ app.put('/mario', (req, res) => {
   });
 });
 
-app.get('/vehicle', function(req, res) {
+app.get('/vehicle', function (req, res) {
   return smartcar.getVehicleIds(access.accessToken)
-    .then(function(data) {
+    .then(function (data) {
       // the list of vehicle ids
       return data.vehicles;
     })
-    .then(function(vehicleIds) {
+    .then(function (vehicleIds) {
       // instantiate the first vehicle in the vehicle id list
       const vehicle = new smartcar.Vehicle(vehicleIds[0], access.accessToken);
       // vehicle.unlock();
       return vehicle.info();
     })
-    .then(function(info) {
+    .then(function (info) {
       console.log(info);
-     
+
       // {
       //   "id": "36ab27d0-fd9d-4455-823a-ce30af709ffc",
       //   "make": "TESLA",
