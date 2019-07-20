@@ -14,14 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(morgan('tiny'));
 
 app.get('/api', (req, res) => {
-  const term = req.params.term;
-  request(`smartcarAPI`, (err, response, body) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(body);
-    }
-  })
+  res.send('Hello Node');
 });
 
 app.listen(PORT, () => console.log(`listening on localhost:${PORT}`));
