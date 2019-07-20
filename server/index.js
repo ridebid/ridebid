@@ -49,13 +49,6 @@ app.get('/exchange', function (req, res) {
     });
 });
 
-app.put('/mario', (req, res) => {
-  axios.get('/exchange').then((response) => {
-    console.log(response, '!!!!');
-    res.send(response);
-  });
-});
-
 app.get('/vehicle', function (req, res) {
   return smartcar.getVehicleIds(access.accessToken)
     .then(function (data) {
