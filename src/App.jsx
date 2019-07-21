@@ -7,16 +7,15 @@ import BidContainer from "./Container/BidContainer.jsx";
 import Nav from './Container/Nav.jsx';
 
 function App() {
-return(
-
-  <div>
-    <Nav/>
-    <Router>
-      <SearchContainer path="/" />
-      <CarContainer path="/car" />
-      <BidContainer path="/bid" />
-    </Router>
-  </div>
+  return(
+    <div>
+      <Nav/>
+      <Router>
+        <SearchContainer path="/" />
+        <CarContainer path="/car" />
+        <BidContainer path="/bid" />
+      </Router>
+    </div>
   );
 }
 
