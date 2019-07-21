@@ -1,7 +1,7 @@
 {
-  "name": "itunescatalog",
+  "name": "smartcar",
   "version": "1.0.0",
-  "description": "web app that allows users to search for songs, shows, movies, etc. via iTunes API",
+  "description": "SmartCarAPi",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
