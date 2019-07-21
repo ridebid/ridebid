@@ -4,14 +4,21 @@ class Cred extends Component {
   constructor(){
     super()
     this.state = {
+      cars1: {
+        make: 'tesla',
+        vin: 'a1234',
+        color: 'blue',
+        location: 'street name'
+      }
     }
   }
+
 
   render(){
 
     return(
       <div>
-        hiknkn
+        <div>{this.state.cars1.make}</div>
       </div>
     )
   }
