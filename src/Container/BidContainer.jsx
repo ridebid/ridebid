@@ -6,16 +6,15 @@ class BidContainer extends Component {
     super();
   }
 
-
   render() {
     return (
       <Container>
         <Row>
-          <Col xs="6">.col-6</Col>
-          <Col xs="6">.col-6</Col>
+          <Col xs="6">BID1</Col>
+          <Col xs="6">BID2</Col>
         </Row>
         </Container>
-    )
+    );
   }
 }
 
