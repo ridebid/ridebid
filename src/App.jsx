@@ -11,9 +11,9 @@ return(
   <div>
     <nav>
       <div>
-        <div><Link to="/">Home</Link></div>
-        <div><Link to="/date"></Link></div>
-        <div><Link to="/account">MyAccount</Link></div>
+        <div><Link to="/">Search</Link></div>
+        <div><Link to="/date">Car</Link></div>
+        <div><Link to="/account">Bid</Link></div>
       </div>
     </nav>
     <Router>
