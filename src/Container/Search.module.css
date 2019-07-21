@@ -1,0 +1,8 @@
+.search {
+    border: 1px solid;
+    background-image: url(/images/bg.jpg);
+    /* background-color: red; */
+    height: 1200px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
