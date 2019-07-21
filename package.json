@@ -46,6 +46,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "dotenv": "^8.0.0",
+    "file-loader": "^4.1.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "style-loader": "^0.23.1",
