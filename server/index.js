@@ -11,7 +11,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+app.use(express.static(path.resolve(__dirname, '../public/')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -20,6 +20,8 @@ app.use(morgan('tiny'));
 app.get('/api', (req, res) => {
   res.send('Hello Node');
 });
+
+
 
 const client = new smartcar.AuthClient({
   clientId: process.env.CLIENT_ID,
@@ -103,9 +105,6 @@ app.get('/vehicle/:type', function (req, res) {
 /**
  * summary: after /login, -> this route will return storage with all the cars that you control.
  */
-app.get('/vehiclevin', (req, res) => {
-
-})
 app.get('/vehicles', (req, res) => {
   const { accessToken } = access;
   let promisedCarData = [];
@@ -151,5 +150,13 @@ odometer: Object {data: {distance: 1222067}, age: Sun Jul 21 2019 04:04:32 GMT-0
       return storage;
     })
 });
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.listen(PORT, () => console.log(`listening on localhost:${PORT}`));
