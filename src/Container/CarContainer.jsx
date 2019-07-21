@@ -5,8 +5,28 @@ import axios from 'axios';
 class CarContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      cars: []
+    }
+    this.getAllVehicles = this.getAllVehicles.bind(this)
   }
   
+
+  getAllVehicles() {
+    const getOptions = {
+      method: 'get'
+    }
+    axios('/vehicles', getOptions).then((res) => {
+      console.log('hey');
+      if (res && res.data.length) {
+        this.setState({
+          cars: res.data
+        })
+      } else {
+        console.log('No cars');
+      }
+    })
+  }
 
   render() {
     const clockSize = '200px'
