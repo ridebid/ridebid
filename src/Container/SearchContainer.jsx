@@ -18,7 +18,6 @@ class SearchContainer extends Component {
             <div className="input-group flex-nowrap">
               <label htmlFor="searchBox">
                 Where do you need your car?
-
               </label>
               <div className="input-group-prepend">
                 <span className="bg-white"><img src="../images/navigation.png" /></span>
@@ -26,6 +25,9 @@ class SearchContainer extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="row">
+          <label></label>
         </div>
       </div>
     )
