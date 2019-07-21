@@ -1,6 +1,7 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const smartcar = require('smartcar');
+const axios = require('axios');
 
 const express = require('express');
 const request = require('request');
@@ -27,7 +28,7 @@ const client = new smartcar.AuthClient({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   redirectUri: process.env.REDIRECT_URI,
-  scope: ['required:read_vehicle_info','required:read_location','read_odometer', 'control_security', 'control_security:unlock', 'control_security:lock'],
+  scope: ['required:read_vehicle_info','required:read_location','read_vin','read_odometer', 'control_security', 'control_security:unlock', 'control_security:lock'],
   testMode: true,
 });
 
@@ -51,7 +52,11 @@ app.get('/exchange', function (req, res) {
     });
 });
 
-app.get('/vehicle', function (req, res) {
+/**
+ * create Unlock or Unlock api route
+ * this should really be a controller.
+ */
+app.get('/keyme/:num/:lockOrUnlock', function (req, res) {
   return smartcar.getVehicleIds(access.accessToken)
     .then(function (data) {
       // the list of vehicle ids
@@ -59,13 +64,15 @@ app.get('/vehicle', function (req, res) {
     })
     .then(function (vehicleIds) {
       // instantiate the first vehicle in the vehicle id list
-      const vehicle = new smartcar.Vehicle(vehicleIds[0], access.accessToken);
-      // vehicle.unlock();
-      return vehicle.info();
+      const vehicle = new smartcar.Vehicle(vehicleIds[req.params.num], access.accessToken);
+      return vehicle;
     })
-    .then(function (info) {
-      console.log(info);
-
+    .then(function (vehicle) {
+      vehicle[req.params.lockOrUnlock].then((result) => {
+        if (result.status) {
+          console.log('success')
+        }
+      });
       // {
       //   "id": "36ab27d0-fd9d-4455-823a-ce30af709ffc",
       //   "make": "TESLA",
@@ -73,11 +80,11 @@ app.get('/vehicle', function (req, res) {
       //   "year": 2014
       // }
 
-      res.json(info);
+      res.json(vehicle);
     });
 });
 //bmws are bad. teslas good.
-app.get('/vehicle/:type', function (req, res) {
+app.get('/vehicle/:num/:type', function (req, res) {
   return smartcar.getVehicleIds(access.accessToken)
     .then(function (data) {
       // the list of vehicle ids
@@ -85,9 +92,9 @@ app.get('/vehicle/:type', function (req, res) {
     })
     .then(function (vehicleIds) {
       // instantiate the first vehicle in the vehicle id list
-      const vehicle = new smartcar.Vehicle(vehicleIds[0], access.accessToken);
+      const vehicle = new smartcar.Vehicle(vehicleIds[req.params.num], access.accessToken);
       // vehicle.unlock();
-      const vehicleCalls = ['location','info', 'odometer'];
+      const vehicleCalls = ['location','info', 'odometer','vin','unlock','lock'];
       if (vehicleCalls.includes(req.params.type)) {
         return vehicle[req.params.type]();
       } else {
@@ -137,7 +144,7 @@ app.get('/vehicles', (req, res) => {
           storage.push(carFullData);
           if (storage.length === promisedCarsData.length) {
             console.log(storage); //storage will have info of every car.
-            res.json(storage).redirect();
+            res.json(storage)
 /* 0: Object {info: Object, location: Object, odometer: Object}
 info: Object {id: "3d9558a6-b0bb-4270-b5c6-19edcde2787c", make: "TESLA", model: "Model 3", year: 2017}
 location: Object {data: {latitude: 37.55, longtitude: 37.55}, age: Sun Jul 21 2019 04:04:32 GMT-0700 (Pacific Dayligh…} // age might be an Date obj...
