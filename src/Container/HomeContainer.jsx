@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-
-
-// import Nav from '../Nav';
-=======
 function Mglass() {
   return (
     <svg width='25px' height='25px' x="0px" y="0px" viewBox="0 0 451 451">
@@ -55,7 +50,6 @@ function Bid() {
   </svg>
   );
 }
->>>>>>> Svg components part one
 
 class HomeContainer extends Component {
   constructor() {
@@ -64,15 +58,10 @@ class HomeContainer extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div>this is home!!
-
-=======
-      <div>mario!!
+      <div>
         <Mglass />
         <Car />
         <Bid />
->>>>>>> Svg components part one
       </div>
     )
   }
