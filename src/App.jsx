@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Router, Link } from "@reach/router";
-import DateContainer from "./Container/DateContainer.jsx";
-import HomeContainer from "./Container/HomeContainer.jsx";
+import CarContainer from "./Container/CarContainer.jsx";
+import SearchContainer from "./Container/SearchContainer.jsx";
 import BidContainer from "./Container/BidContainer.jsx";
 import Nav from './Container/Nav.jsx';
 
@@ -12,8 +12,8 @@ return(
   <div>
     <Nav/>
     <Router>
-      <HomeContainer path="/" />
-      <DateContainer path="/car" />
+      <SearchContainer path="/" />
+      <CarContainer path="/car" />
       <BidContainer path="/bid" />
     </Router>
   </div>
