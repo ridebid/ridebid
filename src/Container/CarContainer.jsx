@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ClockIcon } from '../Components/CarPageIcons.jsx'
+import { ClockIcon, GasIcon, CarDoorIcon, SeatsIcon, BluetoothIcon } from '../Components/CarPageIcons.jsx'
 import axios from 'axios';
 
 class CarContainer extends Component {
@@ -13,6 +13,10 @@ class CarContainer extends Component {
     return (
       <div>this is CAR!!
         <ClockIcon width={clockSize} height={clockSize}></ClockIcon>
+        <GasIcon width={clockSize} height={clockSize} />
+        <CarDoorIcon width={clockSize} height={clockSize} />
+        <SeatsIcon width={clockSize} height={clockSize}/>
+        <BluetoothIcon width={clockSize} height={clockSize}/>
         <button onClick={this.getAllVehicles}>hello</button>
       </div>
     )
