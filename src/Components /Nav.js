@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 
-class Cred extends Component {
+class Nav extends Component {
   constructor(){
     super()
     this.state = {
     }
   }
 
+
   render(){
 
     return(
       <div>
-        hiknkn
+        <ul>
+            <li>Home</li>
+            <li></li>
+        </ul>
       </div>
     )
   }
 }
-export default Cred
+export default Nav
