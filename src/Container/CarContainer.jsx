@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { ClockIcon, GasIcon, CarDoorIcon, SeatsIcon, BluetoothIcon } from '../Components/CarPageIcons.jsx'
 import axios from 'axios';
+import CarCard from './CarCard.jsx'
+
+
 
 class CarContainer extends Component {
   constructor(props) {
@@ -11,6 +14,9 @@ class CarContainer extends Component {
     this.getAllVehicles = this.getAllVehicles.bind(this)
   }
   
+  componentDidMount() {
+    document.body.style.backgroundColor='#E5E5E5';
+  }
 
   getAllVehicles() {
     const getOptions = {
@@ -30,8 +36,16 @@ class CarContainer extends Component {
 
   render() {
     const clockSize = '200px'
+    const styleGal={
+      'transform': "rotate('90deg')"
+    };
     return (
       <div>this is CAR!!
+        {this.state.cars.map((car) => {
+          return (<div>
+            <CarCard car={car} />
+            </div>);
+        })}
         <ClockIcon width={clockSize} height={clockSize}></ClockIcon>
         <GasIcon width={clockSize} height={clockSize} />
         <CarDoorIcon width={clockSize} height={clockSize} />
