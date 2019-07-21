@@ -12,10 +12,11 @@ class CarContainer extends Component {
       cars: []
     }
     this.getAllVehicles = this.getAllVehicles.bind(this)
+    this.getFakeVehicles = this.getFakeVehicles.bind(this)
   }
   
   componentDidMount() {
-    document.body.style.backgroundColor='#E5E5E5';
+    document.body.style.backgroundColor='#53CAD3';
   }
 
   getAllVehicles() {
@@ -33,14 +34,31 @@ class CarContainer extends Component {
       }
     })
   }
+  getFakeVehicles() {
+    this.setState({
+      cars: [
+        
+          {
+            info: {
+              make: 'Tesla',
+              year: 2017
+            },
+            location: {
+              'data': {
+                'latitude': 38.271888732910156,
+                'longitude': -108.8855209350586
+              }
+            }
+          }
+        
+      ]
+    });
+  }
 
   render() {
-    const clockSize = '200px'
-    const styleGal={
-      'transform': "rotate('90deg')"
-    };
+    const clockSize = '200px';
     return (
-      <div>this is CAR!!
+      <div>
         {this.state.cars.map((car) => {
           return (<div>
             <CarCard car={car} />
@@ -52,6 +70,7 @@ class CarContainer extends Component {
         <SeatsIcon width={clockSize} height={clockSize}/>
         <BluetoothIcon width={clockSize} height={clockSize}/>
         <button onClick={this.getAllVehicles}>hello</button>
+        <button onClick={this.getFakeVehicles}>bye</button>
       </div>
     )
   }
