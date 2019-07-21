@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+
 // import Nav from '../Nav';
 
 class HomeContainer extends Component {
@@ -8,7 +10,9 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <div>this is home!!</div>
+      <div>this is home!!
+
+      </div>
     )
   }
 }

@@ -13,7 +13,7 @@ class DateContainer extends Component {
 
   render() {
     return (
-      <div>this is home!!</div>
+      <div>this is hkfkdjkome!!</div>
     )
   }
 }
