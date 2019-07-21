@@ -10,12 +10,12 @@ function App() {
 return(
 
   <div>
-    <Nav/>
     <Router>
       <SearchContainer path="/" />
       <CarContainer path="/car" />
       <BidContainer path="/bid" />
     </Router>
+    <Nav/>
   </div>
   );
 }
