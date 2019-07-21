@@ -75,7 +75,7 @@ app.get('/vehicle', function (req, res) {
     });
 });
 //bmws are bad. teslas good.
-app.get('/vehiclelocation', function (req, res) {
+app.get('/vehicle/:type', function (req, res) {
   return smartcar.getVehicleIds(access.accessToken)
     .then(function (data) {
       // the list of vehicle ids
@@ -85,16 +85,27 @@ app.get('/vehiclelocation', function (req, res) {
       // instantiate the first vehicle in the vehicle id list
       const vehicle = new smartcar.Vehicle(vehicleIds[0], access.accessToken);
       // vehicle.unlock();
-      return vehicle.location();
+      const vehicleCalls = ['location','info', 'odometer'];
+      if (vehicleCalls.includes(req.params.type)) {
+        return vehicle[req.params.type]();
+      } else {
+        throw new Error('This aint a valid req param');
+      }
     })
-    .then(function (location) {
-      console.log(location);
-      res.json(location);
+    .then(function (specificVehicleData) {
+      console.log(specificVehicleData);
+      res.json(specificVehicleData);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
 /**
  * summary: after /login, -> this route will return storage with all the cars that you control.
  */
+app.get('/vehiclevin', (req, res) => {
+
+})
 app.get('/vehicles', (req, res) => {
   const { accessToken } = access;
   let promisedCarData = [];
